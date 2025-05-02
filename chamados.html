@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Chamados - NewAge Solutions</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .lista-chamados {
+      margin-top: 30px;
+      background-color: #2e2e2e;
+      padding: 20px;
+      border-radius: 10px;
+    }
+
+    .chamado-item {
+      background-color: #3a3a3a;
+      padding: 15px;
+      border-radius: 8px;
+      margin-bottom: 15px;
+    }
+
+    .chamado-item strong {
+      color: #6A0DAD;
+    }
+
+    .form-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .form-row > * {
+      flex: 1 1 48%;
+    }
+
+    select {
+      background-color: #444;
+      border: none;
+      color: white;
+      padding: 10px;
+      margin-bottom: 15px;
+      border-radius: 6px;
+      width: 100%;
+    }
+
+    select:focus {
+      outline: none;
+      border: 2px solid #6A0DAD;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <a href="index.html"><img src="logo.png" alt="Logo da NewAge Solutions"></a>
+      <h1>NewAge Solutions</h1>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="index.html"><i class="bi bi-house-up-fill"></i> Início</a></li>
+        <li><a href="chamados.html"><i class="bi bi-clipboard2-check-fill"></i> Chamados</a></li>
+        <li><a href="colaboradores.html"><i class="bi bi-people-fill"></i> Colaboradores</a></li>
+        <li><a href="suporte.html"><i class="bi bi-person-fill-gear"></i> Fale com Suporte</a></li>
+        <li><a href="conta.html"><i class="bi bi-person-circle"></i> Área do Cliente</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <h2>Lista de Chamados</h2>
+    <p>Aqui você verá os chamados recentes e o status deles.</p>
+
+    <div class="lista-chamados" id="listaChamados">
+      <p>Nenhum chamado registrado.</p>
+    </div>
+  </main>
+
+  <!-- Assistente Virtual Ultron -->
+  <div class="robot-helper" id="robotHelper">
+    <div class="speech-box" id="speechBox">
+      <button class="close-robot" onclick="fecharAssistente()">×</button>
+      <div class="text" id="ultronTexto">Hum... parece que você ainda não tem nenhum chamado para consultar, o que acha de criar um novo?</div>
+      <button onclick="abrirPopupChamado()">Novo Chamado</button>
+    </div>
+    <img src="robot.png" alt="Assistente Virtual Ultron">
+  </div>
+
+  <!-- Popup de Novo Chamado -->
+  <div class="popup-overlay" id="popupChamado">
+    <div class="popup" id="popupChamadoContent">
+      <button class="close" onclick="fecharPopupChamado()">×</button>
+      <h3>Novo Chamado</h3>
+      <form id="formChamado" onsubmit="salvarChamado(event)">
+        <label>Usuário:</label>
+        <select id="usuario" required>
+          <option>DIRETOR A</option>
+          <option>SUPORTE B</option>
+          <option>ANALISTA C</option>
+        </select>
+
+        <label>Cliente:</label>
+        <select id="cliente" required>
+          <option>CLIENTE EXEMPLO</option>
+          <option>EMPRESA TESTE</option>
+          <option>ORG. MODELO</option>
+        </select>
+
+        <label>Ramal:</label>
+        <input type="text" id="ramal" placeholder="Digite o ramal" required>
+
+        <label>Departamento:</label>
+        <select id="departamento" required>
+          <option>GERAL</option>
+          <option>INFRAESTRUTURA</option>
+          <option>TI</option>
+        </select>
+
+        <div class="form-row">
+          <div>
+            <label>Grupo:</label>
+            <select id="grupo" required>
+              <option>REDE</option>
+              <option>SUPORTE</option>
+              <option>MANUTENÇÃO</option>
+            </select>
+          </div>
+          <div>
+            <label>Assunto:</label>
+            <select id="assunto" required>
+              <option>REFAZER PLUG DE CABO</option>
+              <option>CONFIGURAÇÃO DE REDE</option>
+              <option>OUTROS</option>
+            </select>
+          </div>
+        </div>
+
+        <label>Resumo:</label>
+        <input type="text" id="resumo" placeholder="Ex: Sem rede" required>
+
+        <label>Solicitação:</label>
+        <textarea id="solicitacao" placeholder="Descreva sua solicitação com detalhes..." required></textarea>
+
+        <div style="display: flex; gap: 10px;">
+          <button type="submit">Salvar</button>
+          <button type="button" onclick="document.getElementById('inputAnexo').click()">Anexar</button>
+          <button type="button" onclick="fecharPopupChamado()">Voltar</button>
+        </div>
+        <input type="file" id="inputAnexo" style="display: none;" />
+      </form>
+    </div>
+  </div>
+
+  <!-- Rodapé -->
+  <footer style="margin-top: 150px;">
+    <p>&copy; 2025 NewAge Solutions. Todos os direitos reservados.</p>
+  </footer>
+
+  <script>
+    function fecharAssistente() {
+      document.getElementById("robotHelper").style.display = "none";
+    }
+
+    function abrirPopupChamado() {
+      document.getElementById("popupChamado").style.display = "flex";
+    }
+
+    function fecharPopupChamado() {
+      const popup = document.getElementById("popupChamadoContent");
+      popup.classList.add("fade-out");
+      setTimeout(() => {
+        document.getElementById("popupChamado").style.display = "none";
+        popup.classList.remove("fade-out");
+      }, 400);
+    }
+
+    window.addEventListener('load', () => {
+      const helper = document.getElementById("robotHelper");
+      helper.style.opacity = 0;
+      helper.style.transform = "translateY(20px)";
+      setTimeout(() => {
+        helper.style.transition = "all 1.5s ease";
+        helper.style.opacity = 1;
+        helper.style.transform = "translateY(0)";
+      }, 500);
+    });
+
+    function salvarChamado(event) {
+      event.preventDefault();
+
+      const chamado = {
+        usuario: document.getElementById("usuario").value,
+        cliente: document.getElementById("cliente").value,
+        ramal: document.getElementById("ramal").value,
+        departamento: document.getElementById("departamento").value,
+        grupo: document.getElementById("grupo").value,
+        assunto: document.getElementById("assunto").value,
+        resumo: document.getElementById("resumo").value,
+        solicitacao: document.getElementById("solicitacao").value
+      };
+
+      const lista = document.getElementById("listaChamados");
+      if (lista.querySelector("p")) lista.innerHTML = "";
+
+      const item = document.createElement("div");
+      item.className = "chamado-item";
+      item.innerHTML = `
+        <p><strong>Usuário:</strong> ${chamado.usuario}</p>
+        <p><strong>Cliente:</strong> ${chamado.cliente}</p>
+        <p><strong>Departamento:</strong> ${chamado.departamento}</p>
+        <p><strong>Grupo:</strong> ${chamado.grupo}</p>
+        <p><strong>Assunto:</strong> ${chamado.assunto}</p>
+        <p><strong>Resumo:</strong> ${chamado.resumo}</p>
+        <p><strong>Solicitação:</strong> ${chamado.solicitacao}</p>
+      `;
+      lista.prepend(item);
+
+      // Atualiza texto da Ultron
+      document.getElementById("ultronTexto").textContent = "Perfeito, agora você poderá consultar chamados em andamento, deseja solicitar outro?";
+
+      fecharPopupChamado();
+    }
+  </script>
+</body>
+</html>

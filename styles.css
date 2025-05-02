@@ -1,0 +1,737 @@
+/* === ESTILO BASE === */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #1e1e1e;
+    color: white;
+}
+
+/* === CABEÇALHO === */
+header {
+    background-color: #6A0DAD;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+header .logo {
+    display: flex;
+    align-items: center;
+}
+
+header .logo img {
+    height: 50px;
+    margin-right: 15px;
+}
+
+header .logo h1 {
+    font-size: 2em;
+    margin: 0;
+    color: white;
+}
+
+/* === NAVEGAÇÃO === */
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 20px;
+}
+
+nav ul li {
+    display: inline-block;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 8px 12px;
+    border-radius: 6px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+nav ul li a:hover {
+    background-color: #550a98;
+    transform: scale(1.1);
+}
+
+/* === CONTEÚDO PRINCIPAL === */
+main {
+    padding: 20px;
+}
+
+h2, h3 {
+    font-size: 1.8em;
+    margin-bottom: 10px;
+    transition: color 0.3s ease;
+}
+
+/* === CARDS / SEÇÕES === */
+/* Correção para links estilo bloco (setas) */
+.seta {
+    text-decoration: none;
+    color: white;
+    display: block;
+    width: 100%;
+    max-width: 300px;
+    background-color: #333;
+    padding: 20px;
+    border-radius: 12px;
+    text-align: center;
+    transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+.seta:hover {
+    background-color: #444;
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(106, 13, 173, 0.5);
+}
+
+.seta h3, .seta p {
+    color: white;
+    margin: 10px 0;
+}
+
+.seta h3 {
+    font-size: 1.4em;
+}
+
+/* Organização dos blocos */
+.setas {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+
+/* === RODAPÉ === */
+footer {
+    text-align: center;
+    padding: 15px;
+    background-color: #2e2e2e;
+    color: #ccc;
+    font-size: 0.9em;
+    margin-top: 40px;
+}
+
+/* === BOTÕES === */
+button {
+    background-color: #6A0DAD;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+button:hover {
+    background-color: #550a98;
+    transform: scale(1.05);
+}
+
+/* === FORMULÁRIOS === */
+form input, form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #444;
+    border: none;
+    border-radius: 5px;
+    color: white;
+}
+
+form input::placeholder, form textarea::placeholder {
+    color: #aaa;
+}
+
+/* === CARDS DE COLABORADORES === */
+.colaborador {
+    background-color: #2e2e2e;
+    border: 1px solid #6A0DAD;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 20px;
+    transition: box-shadow 0.3s ease;
+}
+
+.colaborador:hover {
+    box-shadow: 0 0 12px rgba(106, 13, 173, 0.4);
+}
+
+.colaborador ul {
+    padding-left: 20px;
+}
+
+
+/* === ASSISTENTE VIRTUAL === */
+.robot-helper {
+    position: fixed;
+    bottom: 100px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 9999;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 1.5s ease forwards;
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.robot-helper img {
+    width: 120px;
+}
+
+.speech-box {
+    background: #2e2e2e;
+    color: white;
+    padding: 12px 16px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.4);
+    position: relative;
+    max-width: 260px;
+    text-align: left;
+}
+
+.speech-box .close-robot {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 18px;
+    color: #aaa;
+    cursor: pointer;
+}
+
+.speech-box .close-robot:hover {
+    color: white;
+}
+
+.speech-box .text {
+    font-size: 0.95em;
+    margin-right: 20px;
+}
+
+.speech-box button {
+    margin-top: 10px;
+    background-color: #6A0DAD;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    color: white;
+    cursor: pointer;
+}
+
+.chat-popup {
+    position: fixed;
+    bottom: 210px;
+    right: 20px;
+    background: #2e2e2e;
+    color: white;
+    padding: 20px;
+    border-radius: 12px;
+    width: 300px;
+    z-index: 9999;
+    box-shadow: 0 0 15px rgba(0,0,0,0.5);
+    display: none;
+    flex-direction: column;
+}
+
+.chat-popup textarea {
+    background-color: #444;
+    border: none;
+    color: white;
+    padding: 10px;
+    border-radius: 6px;
+    resize: none;
+    height: 80px;
+    margin-bottom: 10px;
+}
+
+.chat-popup button {
+    background-color: #6A0DAD;
+    border: none;
+    padding: 8px;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.chat-popup .close-chat {
+    align-self: flex-end;
+    background: none;
+    border: none;
+    font-size: 18px;
+    color: #aaa;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+.chat-popup .close-chat:hover {
+    color: white;
+}
+
+/* === WHATSAPP === */
+.whatsapp-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #25D366;
+    color: white;
+    padding: 12px 18px;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: bold;
+    text-decoration: none;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    z-index: 9998;
+    transition: transform 0.2s ease;
+}
+
+.whatsapp-btn:hover {
+    transform: scale(1.05);
+    text-decoration: none;
+}
+
+/* === LOGIN POPUP === */
+.popup-overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.popup {
+    background-color: #2e2e2e;
+    padding: 30px 20px 20px;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 400px;
+    position: relative;
+    color: white;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.popup input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    background-color: #444;
+    border: none;
+    color: white;
+    border-radius: 6px;
+}
+
+.popup button {
+    width: 100%;
+    padding: 10px;
+}
+
+.popup .close {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background-color: #6A0DAD;
+    border: none;
+    font-size: 20px;
+    color: white;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.popup .close:hover {
+    background-color: #550a98;
+}
+
+
+.popup.fade-out {
+    animation: fadeOut 0.4s ease forwards;
+}
+
+@keyframes fadeOut {
+    from { opacity: 1; transform: scale(1); }
+    to { opacity: 0; transform: scale(0.95); }
+}
+
+/* === POPUP DE LOGIN === */
+.popup-overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.popup {
+    background-color: #2e2e2e;
+    padding: 30px 20px;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 400px;
+    position: relative;
+    text-align: center;
+    color: white;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+}
+
+.popup input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    background-color: #444;
+    border: none;
+    color: white;
+    border-radius: 6px;
+}
+
+.popup button {
+    width: 100%;
+    padding: 10px;
+    background-color: #6A0DAD;
+    border: none;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.popup button:hover {
+    background-color: #550a98;
+}
+
+.popup .close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 28px;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.popup .close:hover {
+    color: #ccc;
+}
+
+.popup.fade-out {
+    animation: fadeOut 0.4s ease forwards;
+}
+
+@keyframes fadeOut {
+    from { opacity: 1; transform: scale(1); }
+    to { opacity: 0; transform: scale(0.95); }
+}
+
+/* === WHATSAPP FIXO === */
+.whatsapp-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #25D366;
+    color: white;
+    padding: 12px 18px;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: bold;
+    text-decoration: none;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    z-index: 9998;
+    transition: transform 0.2s ease;
+}
+
+.whatsapp-btn:hover {
+    transform: scale(1.05);
+    text-decoration: none;
+}
+
+/* === ROBÔ ASSISTENTE ULTRON === */
+.robot-helper {
+    position: fixed;
+    bottom: 100px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 9999;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 1.5s ease forwards;
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.robot-helper img {
+    width: 120px;
+}
+
+.speech-box {
+    background: #2e2e2e;
+    color: white;
+    padding: 12px 16px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.4);
+    position: relative;
+    max-width: 260px;
+    text-align: left;
+}
+
+.speech-box .close-robot {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 18px;
+    color: #aaa;
+    cursor: pointer;
+}
+
+.speech-box .close-robot:hover {
+    color: white;
+}
+
+.speech-box .text {
+    font-size: 0.95em;
+    margin-right: 20px;
+}
+
+.speech-box button {
+    margin-top: 10px;
+    background-color: #6A0DAD;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    color: white;
+    cursor: pointer;
+}
+
+/* === POPUP DE CONVERSA COM ULTRON === */
+.chat-popup {
+    position: fixed;
+    bottom: 210px;
+    right: 20px;
+    background: #2e2e2e;
+    color: white;
+    padding: 15px;
+    border-radius: 12px;
+    width: 320px;
+    z-index: 9999;
+    box-shadow: 0 0 15px rgba(0,0,0,0.5);
+    display: none;
+    flex-direction: column;
+    font-size: 0.95em;
+}
+
+.chat-popup .close-chat {
+    align-self: flex-end;
+    background: none;
+    border: none;
+    font-size: 18px;
+    color: #aaa;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+.chat-popup .close-chat:hover {
+    color: white;
+}
+
+.chat-messages {
+    background-color: #1e1e1e;
+    border-radius: 8px;
+    padding: 10px;
+    margin-bottom: 10px;
+    height: 180px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.msg {
+    background: #444;
+    padding: 8px 12px;
+    border-radius: 10px;
+    margin-bottom: 6px;
+    max-width: 90%;
+    word-wrap: break-word;
+}
+
+.msg.user {
+    align-self: flex-end;
+    background: #6A0DAD;
+}
+
+.msg.bot {
+    align-self: flex-start;
+    background: #333;
+}
+
+.chat-popup textarea {
+    background-color: #444;
+    border: none;
+    color: white;
+    padding: 8px;
+    border-radius: 6px;
+    resize: none;
+    height: 60px;
+    margin-bottom: 6px;
+    font-size: 0.9em;
+}
+
+.chat-popup button {
+    background-color: #6A0DAD;
+    border: none;
+    padding: 8px;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.chat-popup button:hover {
+    background-color: #550a98;
+}
+
+nav ul li a {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+nav ul li a i {
+    font-size: 1.1em;
+}
+
+/* === RESPONSIVIDADE === */
+
+/* Tablets (≤ 991px) */
+@media (max-width: 991px) {
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    nav ul {
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 10px;
+    }
+
+    .logo {
+        margin-bottom: 10px;
+    }
+
+    .setas {
+        flex-direction: row;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .seta {
+        max-width: 45%;
+    }
+}
+
+/* Celulares (≤ 768px) */
+@media (max-width: 768px) {
+    header .logo h1 {
+        font-size: 1.5em;
+    }
+
+    nav ul li a {
+        font-size: 0.95em;
+        padding: 6px 10px;
+    }
+
+    .setas {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .seta {
+        width: 90%;
+        max-width: none;
+    }
+
+    h2, h3 {
+        font-size: 1.5em;
+    }
+
+    main {
+        padding: 15px;
+    }
+}
+
+/* Telas muito pequenas (≤ 480px) */
+@media (max-width: 480px) {
+    header {
+        padding: 10px;
+    }
+
+    .logo img {
+        height: 40px;
+    }
+
+    .seta {
+        padding: 15px;
+    }
+
+    button {
+        width: 100%;
+        padding: 12px;
+    }
+
+    form input, form textarea {
+        font-size: 1em;
+    }
+
+    footer {
+        font-size: 0.8em;
+    }
+}
+
+
