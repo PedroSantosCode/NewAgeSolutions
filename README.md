@@ -2,4 +2,4 @@ Projeto em equipe desenvolvido como trabalho acadêmico, com o objetivo de simul
 
 Tecnologias usadas: Html5, Css3, Javascript.
 
-https://pedrosantoscode.github.io/NewAgeSolutions/index.html
+Link do Projeto: https://pedrosantoscode.github.io/NewAgeSolutions/index.html
